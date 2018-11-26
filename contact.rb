@@ -14,48 +14,6 @@ class Contact
     @@id += 1
   end
 
-  #Readers
-  def first_name
-    @first_name
-  end
-
-  def last_name
-    @last_name
-  end
-
-  def email
-    @email
-  end
-
-  def note
-    @note
-  end
-
-  def id
-    @id
-  end
-
-  #Writers
-  def first_name=(first_name)
-    @first_name = first_name
-  end
-
-  def last_name=(last_name)
-    @last_name = last_name
-  end
-
-  def email=(email)
-    @email = email
-  end
-
-  def note=(note)
-    @note = note
-  end
-
-  def id=(id)
-    @id = id
-  end
-
   # This method should call the initializer,
   # store the newly created contact, and then return it
   def self.create(first_name, last_name, email, note)

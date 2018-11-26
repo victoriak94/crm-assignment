@@ -1,7 +1,10 @@
+
+require './contact.rb'
+
 class CRM
 
   def initialize
-    
+
   end
 
   def main_menu
@@ -45,24 +48,43 @@ class CRM
     print 'Enter a Note: '
     note = gets.chomp
 
-    Contact.create(first_name, last_name, email, note)
+    contact = Contact.create(
+      first_name: first_name,
+      last_name:  last_name,
+      email:      email,
+      note:       note
+    )
   end
 
   def modify_existing_contact
-
+    id = get_id
+    puts "#{Contact.find(id).first_name} #{Contact.find(id).last_name} | #{Contact.find(id).email} | #{Contact.find(id).note}"
+    print_modify_menu
+    user_selected = gets.to_i
+    call_modify_option(user_selected, id)
+    puts "#{Contact.find(id).first_name} #{Contact.find(id).last_name} | #{Contact.find(id).email} | #{Contact.find(id).note}"
   end
 
   def delete_contact
-
+    id = get_id
+    contact = Contact.find(id)
+    contact.delete
+    puts "#{contact.first_name} #{contact.last_name} deleted."
   end
 
   def display_all_contacts
-
+    puts "Contacts:"
+    puts Contact.contacts
   end
 
   def search_by_attribute
-
+    print_by_option_menu
+    user_selected = gets.to_i
+    call_search_by_option(user_selected)
   end
 
+end
 
+at_exit do
+  ActiveRecord::Base.connection.close
 end
